@@ -1,0 +1,29 @@
+        for (int i = 0; i <= n; i++) {
+            String[] temp = scanner.nextLine().split(" ");
+            if (!graph.containsKey(temp[0])) {
+                graph.put(temp[0], Arrays.copyOfRange(temp,  1, temp.length));
+            }
+            for (int j = 1; j < temp.length; j++)  {
+                if (!graph.containsKey(temp[j])) {
+                    graph.put(temp[j], new String[]{temp[0]});
+                } else {
+                    String[] tmp2 = new String[graph.get(temp[j]).length + 1];
+                    for (int k = 0; k < tmp2.length-1; k++) {
+                        tmp2[k] = graph.get(temp[j])[k];
+                    }
+                    tmp2[tmp2.length-1] = temp[0];
+                    graph.put(temp[j], tmp2);
+                }
+            }
+            System.out.println(Arrays.toString(temp));
+        }
+
+7
+A B
+B A D
+C D
+D E C
+E D F G
+F E
+G E
+F A
